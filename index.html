@@ -10,26 +10,53 @@
     </head>
 
     <body>
-        <div>
-            <div class="container" id="container">
-              <div class="hero">
-                  <h1>Vuejs Test</h1>
-              </div>
-              <div class="mx-auto">
+        <div class="jumbotron">
+          <div class="container">
+            <h1 class="display-4">Hello Vue</h1>
+            <p>Simple vuejs page to register and login using Firebase</p>
+            <p><a class="btn btn-primary" href="https://vuejs.org/" role="button">Learn more &raquo;</a></p>
+          </div>
+        </div>
 
-                  <form id="form" v-on:submit.prevent="addUser">
-                    <input type="email" v-model="newUser.email" placeholder="email@email.com">
-                    <input type="password" v-model="newUser.password" placeholder="Password">
-                    <input type="submit" value="Register">
-                  </form>
-                  <ul class="errors">
-                    <p>{{error.email}}</p>
-                    <p>{{error.password}}</p>
-                  </ul>
-
+        <div class="container" id="container">
+          <div class="mx-auto">
+              <div class="py-1">
+                  <strong class="alert-warning">{{message.result}}</strong>
               </div>
-              <span class="message">{{message}}</span>
-            </div>
+              <form id="form-register" v-on:submit.prevent="addUser" v-if="registerSeen">
+                <h3>Sign-Up demo </h3>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control my-1" v-model="newUser.email" placeholder="email@email.com">
+                    <small>{{error.email}}</small>
+                    <label>Password</label>
+                    <input type="password" class="form-control my-1" v-model="newUser.password" placeholder="Password">
+                    <small>{{error.password}}</small>
+                    <input type="submit" class="btn btn-info my-1" value="Sign-Up">
+                </div>
+              </form>
+              <form id="form-login" v-on:submit.prevent="loginUser" v-if="loginSeen">
+                <h3>Login now</h3>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control my-1" v-model="user.email" placeholder="email@email.com">
+                    <label>Password</label>
+                    <input type="password" class="form-control my-1" v-model="user.password" placeholder="Password">
+                    <input type="submit" class="btn btn-info my-1" value="Login">
+                </div>
+              </form>
+              <div id="profile" v-if="profileSeen">
+                Your profile
+
+                <div>
+                    <label>Email</label>
+                    <label>{{user.email}}</label>
+                </div>
+                <p>
+                    <a href="#" v-on:click="logout">Sign Out</a>
+                </p>
+              </div>
+          </div>
         </div>
 
         <script src="https://unpkg.com/vue"></script>

@@ -21,11 +21,26 @@ var app = new Vue({
       email: '',
       password: ''
     },
+    user: {
+        email: '',
+        password: ''
+    },
     error: {
         email: '',
         password: ''
     },
-    message: ''
+    message: {
+        result: ''
+    },
+    registerSeen: true,
+    loginSeen: false,
+    alertSeen: true,
+    profileSeen: false
+  },
+  computed: {
+    alertSeen: function () {
+        return this.message.result!=='';
+    }
   },
   // computed property for form validation state
   computed: {
@@ -54,27 +69,55 @@ var app = new Vue({
     resetForm: function(){
         this.newUser.email='';
         this.newUser.password = '';
+        this.registerSeen = false;
+        this.loginSeen = true;
+    },
+    showProfile: function(){
+        this.loginSeen = false;
+        this.profileSeen = true;
     },
     addUser: function () {
         var errors = this.error;
         var message = this.message;
         var resetForm = this.resetForm;
         if (this.isValid) {
+            message.result = 'Adding ...';
             firebase.auth().createUserWithEmailAndPassword(this.newUser.email, this.newUser.password)
             .then(function(repsonse){
-                message = 'Successfully registered ...';
+                message.result = 'Successfully registered ...';
                 resetForm();
             })
             .catch(function(error) {
               // Handle Errors here.
               var errorCode = error.code;
               var errorMessage = error.message;
-              errors.email = errorMessage;
+              message.result = errorMessage;
             });
         }
     },
     loginUser: function () {
-
+        var message = this.message;
+        var showProfile = this.showProfile;
+        firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password)
+        .then(function(repsonse){
+            message.result = 'Logged in !';
+            showProfile();
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          message.result = errorMessage;
+          // ...
+        });
+    },
+    logout: function(){
+        var message = this.message;
+        firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+        }).catch(function(error) {
+          // An error happened.
+        });
     }
   }
 })
