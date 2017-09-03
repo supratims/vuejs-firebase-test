@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Introduction — Vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Example vue.js application">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div>
+            <div class="container" id="container">
+              <div class="hero">
+                  <h1>Vuejs Test</h1>
+              </div>
+              <div class="mx-auto">
+
+                  <form id="form" v-on:submit.prevent="addUser">
+                    <input type="email" v-model="newUser.email" placeholder="email@email.com">
+                    <input type="password" v-model="newUser.password" placeholder="Password">
+                    <input type="submit" value="Register">
+                  </form>
+                  <ul class="errors">
+                    <p>{{error.email}}</p>
+                    <p>{{error.password}}</p>
+                  </ul>
+
+              </div>
+              <span class="message">{{message}}</span>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+        <script src="main.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    </body>
+</html>
