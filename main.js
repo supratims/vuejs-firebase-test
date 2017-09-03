@@ -2,12 +2,12 @@ var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@(
 
 // Setup Firebase
 var config = {
-  apiKey: "AIzaSyC5nbbPh-U8FtQZtXnRZe--N0yyDXi7yCE",
-  authDomain: "vuetest-5c4d6.firebaseapp.com",
-  databaseURL: "https://vuetest-5c4d6.firebaseio.com",
-  projectId: "vuetest-5c4d6",
-  storageBucket: "vuetest-5c4d6.appspot.com",
-  messagingSenderId: "58323961621"
+  apiKey: "xxxxx",
+  authDomain: "xx.firebaseapp.com",
+  databaseURL: "https://xxxx.firebaseio.com",
+  projectId: "xxxx-xxx",
+  storageBucket: "xxx-xxx.appspot.com",
+  messagingSenderId: "xxx"
 };
 firebase.initializeApp(config);
 
